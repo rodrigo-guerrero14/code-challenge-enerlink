@@ -1,0 +1,13 @@
+:root{
+  --fc-today-bg-color: transparent;
+}
+
+.fc-timegrid-slots table  tbody tr:nth-child(1n){
+  border-bottom: 1px solid #fff !important;
+}
+
+.calendar-container{
+  padding: 0 64px;
+  margin-top: 177px;
+  max-width: 100%;
+}
