@@ -1,0 +1,33 @@
+.modal{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .3);
+  z-index: 10;
+}
+
+.modal-content{
+  background: #fff;
+  padding: 36px 64px;
+  border-radius: 46px;
+  margin: 250px auto 0 auto;
+  max-width: 622px;
+  min-height: 561px;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .25);
+}
+
+.modal-content .header{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-height: 40px;
+}
+
+.modal-content .header h3{
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+}

@@ -1,0 +1,95 @@
+.form{
+  margin-top: 10px;
+}
+
+.form .sub-title{
+  letter-spacing: -0.015em;
+  line-height: 30px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.form input{
+  padding: 9px 0 9px 14px;
+  box-sizing: border-box;
+}
+
+.form .button-container{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 47px;
+  width: 100%;
+}
+
+.form .save-button{
+  background-color: var(--color-save-button);
+  border: none;
+  border-radius: 6px;
+  padding: 11px 73px;
+  color: var(--color-white);
+  transition: 200ms linear;
+}
+
+.form .save-button:active{
+  animation: saved linear 500ms;
+}
+
+.form .time,
+.form .charger{
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.form .time > img,
+.form .charger > img{
+  margin-right: 10px;
+}
+
+.form .responsable,
+.form .data-car{
+  margin-top: 28px;
+  display: grid;
+}
+
+.form .responsable{
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 24px;
+}
+
+.form .responsable .title-container{
+  align-items: center;
+  display: flex;
+  grid-column: span 2;
+}
+
+.form .responsable .title-container img,
+.form .data-car .title-container img{
+  margin-right: 10px;
+}
+
+.form .responsable > input:last-of-type{
+  grid-column: span 2;
+}
+
+.form .data-car{
+  grid-template-columns: repeat(3, minmax(50px, 1fr));
+  column-gap: 18px;
+  row-gap: 20px;
+}
+
+.form .data-car .title-container{
+  align-items: center;
+  display: flex;
+  grid-column: span 3;
+}
+
+@keyframes saved{
+  from{
+    transform: scale(1);
+  }
+  to{
+    transform: scale(1.15);
+  }
+}
