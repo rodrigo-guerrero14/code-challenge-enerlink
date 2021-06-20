@@ -1,0 +1,20 @@
+.event-content{
+  overflow: hidden;
+}
+
+.event{
+  padding: 15px 0 15px 30px;
+}
+
+.event-info{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.event-info > img{
+  margin-right: 10px;
+}
+
+.event-info span{
+  font-weight: 700;
+}

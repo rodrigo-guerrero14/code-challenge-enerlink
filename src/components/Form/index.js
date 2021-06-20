@@ -6,16 +6,23 @@ import charger_icon from '../../img/charger-icon.png'
 import person_icon from '../../img/person-icon.png'
 import car_icon from '../../img/car-icon.png'
 
+import useGetDate from '../../Hooks/useGetDate'
 
-const Form = ({ dates, setDataBase, charger, setModal }) => {
+
+const Form = ({ dates, setEvents, charger, setModal, setDate }) => {
   const [data, setData] = useState({})
   const {end, start} = dates
 
-  const getDate = (newDate) => {
-    const hours = newDate.getHours()
-    const amPm = hours > 12 ? 'PM' : 'AM'
-    return `${newDate.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")} ${amPm}`
-  }
+  useEffect(() => {
+    setData(prevState => {
+      return {
+        ...prevState,
+        chargerId: charger[0].id,
+        inicio: start,
+        fin: end
+      }
+    })
+  }, [])
 
   const handleChange = (event) => {
     const { target } = event
@@ -30,39 +37,24 @@ const Form = ({ dates, setDataBase, charger, setModal }) => {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json"}
+      headers: { "Content-Type": "application/json" }
     })
       .then(response => response.json())
       .then(content => {
-        setDataBase(prevState => {
-          const { events } = prevState
-          return {
-            ...prevState,
-            events: [...events, content]
-          }
+        setEvents(prevState => {
+          return [...prevState, { ...content, start: content.inicio, end: content.fin }]
         })
 
       })
-      setData({})
-      setModal(false)
+    setData({})
+    setModal(false)
   }
-
-  useEffect(() => {
-    setData(prevState => {
-      return {
-        ...prevState,
-        chargerId: charger[0].id,
-        inicio: start.toLocaleTimeString(),
-        termino: end.toLocaleTimeString()
-      }
-    })
-  }, [])
 
   return (
     <form className="form" method="POST">
         <div className="time">
           <img src={clock_icon} alt="clock icon" />
-        <p>{`${getDate(start)} - ${getDate(end)}`}</p>
+        <p>{`${useGetDate(start)} - ${useGetDate(end)}`}</p>
         </div>
         <div className="charger">
           <img src={charger_icon} alt="charger icon" />
