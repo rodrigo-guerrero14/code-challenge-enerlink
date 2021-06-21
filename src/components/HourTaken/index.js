@@ -8,8 +8,7 @@ import clockIcon from '../../img/clock-icon-white.png'
 
 import useGetDate from '../../Hooks/useGetDate'
 
-
-const HourTaken = (info, props) =>{
+const HourTaken = (info) =>{
   const { apellido, nombre, chargerId, patente, marca, modelo, inicio, fin } = info.event._def.extendedProps
 
   return(
@@ -33,7 +32,6 @@ const HourTaken = (info, props) =>{
         <img src={clockIcon} alt="Clock icon" />
         <p>{`${useGetDate(inicio)} - ${useGetDate(fin)}`}</p>
       </div>
-
     </section>
   )
 }

@@ -9,13 +9,25 @@ import '@fullcalendar/core/main'
 import Modal from '../Modal'
 import Form from '../Form'
 import HourTaken from '../HourTaken'
+import FormUpdate from '../FormUpdate'
 
 const Calendar = () => {
-
+  // modales
   const [modalIsOpen, setModal] = useState(false)
+  const [modalUpdate, setModalUpdate] = useState(false)
+
+  // data for send to components form
   const [dates, setDates] = useState({})
+  const [dataUpdate, setDataUpdate] = useState({})
+
+  // DataBases
   const [events, setEvents] = useState([])
   const [chargers, setChargers] = useState({})
+
+  const headerSettings = {
+    left: 'title',
+    right: 'prev,next'
+  }
 
   const handleSelected = (info) => {
     const {startStr, endStr} = info
@@ -24,15 +36,8 @@ const Calendar = () => {
   }
 
   const handleClick = (info) => {
-
-    console.log('click on event')
-    console.log(info.event._context)
-
-  }
-
-  const headerSettings = {
-    left: 'title',
-    right: 'prev,next'
+    setDataUpdate(info.event._def.extendedProps)
+    setModalUpdate(true)
   }
 
   useEffect(()=> {
@@ -47,13 +52,14 @@ const Calendar = () => {
               start: setFirstDate(event.inicio),
               end: setFirstDate(event.fin),
               inicio: setFirstDate(event.inicio),
-              fin:setFirstDate(event.fin)
+              fin:setFirstDate(event.fin),
+              idClient: event.id
             }
           })
           return newEvents
         })
-        setChargers(data.chargers)
-      })
+        setChargers(data.chargers)})
+      .catch(err => console.log(err))
   }, [])
 
   const setFirstDate = (oldDate) => {
@@ -88,8 +94,12 @@ const Calendar = () => {
         />
 
       </section>
-      <Modal modalActive={modalIsOpen} setModal={setModal}>
+      <Modal modalActive={modalIsOpen} setModal={setModal} title={'Agendar carga'}>
         <Form dates={dates} setEvents={setEvents} charger={chargers} setModal={setModal}/>
+      </Modal>
+
+      <Modal modalActive={modalUpdate} setModal={setModalUpdate} title={'Editar evento de carga'}>
+        <FormUpdate data={{ ...dataUpdate }} charger={chargers} setEvents={setEvents} setModal={setModalUpdate}/>
       </Modal>
     </>
   )

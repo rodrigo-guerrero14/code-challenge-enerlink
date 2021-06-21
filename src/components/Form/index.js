@@ -42,9 +42,8 @@ const Form = ({ dates, setEvents, charger, setModal, setDate }) => {
       .then(response => response.json())
       .then(content => {
         setEvents(prevState => {
-          return [...prevState, { ...content, start: content.inicio, end: content.fin }]
+          return [...prevState, { ...content, start: content.inicio, end: content.fin, idClient: prevState.length + 1, id: prevState.length + 1}]
         })
-
       })
     setData({})
     setModal(false)
