@@ -4,6 +4,7 @@
   --font-size: 18px;
   --color-save-button: #18a0FB;
   --color-white: #FFFFFF;
+  --color-red: #FB186A;
 }
 
 html{
@@ -19,4 +20,8 @@ body {
 
 h1, h2, h3, h4, h5 ,h6, p{
   margin: 0;
+}
+
+.fc-media-screen{
+  max-height: calc(100vh - 177px);
 }

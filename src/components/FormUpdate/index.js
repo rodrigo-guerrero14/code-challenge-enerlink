@@ -42,8 +42,37 @@ const FormUpdate = ({setModal, charger, data, setEvents}) => {
       .catch(err => console.log(err))
   }
 
+  const handleDelete = (e) => {
+    e.preventDefault()
+    fetch(`https://my-json-server.typicode.com/bastidiaaz/frontend-test-json-api/events/${dataUpdated.idClient}`, {
+      method: "DELETE",
+      mode: "cors",
+      body: JSON.stringify(dataUpdated),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .then(content => {
+        console.log(content)
+        setEvents(prevState => {
+          const newState = prevState.map(event => {
+            if(event.id !== dataUpdated.idClient){
+              return event
+            }else{
+              return {}
+            }
+          })
+          return newState
+        })
+        setDataUpdated({})
+        setModal(false)
+      })
+      .catch(err => console.log(err))
+
+  }
+
   return(
     <form className="form" method="PATCH">
+      <button type="submit" onClick={handleDelete} className="delete-button">Eliminar</button>
       <div className="time">
         <img src={clock_icon} alt="clock icon" />
         <p>{`${useGetDate(dataUpdated.inicio)} - ${useGetDate(dataUpdated.fin)}`}</p>

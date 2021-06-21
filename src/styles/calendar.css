@@ -8,6 +8,7 @@
 
 .calendar-container{
   padding: 0 64px;
-  margin-top: 177px;
-  max-width: 100%;
+  margin: auto;
+  margin-top: 65px;
+  max-width: 1444px;
 }

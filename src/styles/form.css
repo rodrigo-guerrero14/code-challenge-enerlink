@@ -21,7 +21,8 @@
   width: 100%;
 }
 
-.form .save-button{
+.form .save-button,
+.delete-button{
   background-color: var(--color-save-button);
   border: none;
   border-radius: 6px;
@@ -30,7 +31,16 @@
   transition: 200ms linear;
 }
 
-.form .save-button:active{
+.delete-button{
+  background-color: transparent;
+  border: 1px solid var(--color-red);
+  color: var(--color-red);
+  padding: 3px 14px;
+  margin-bottom: 10px;
+}
+
+.form .save-button:active,
+.delete-button:active{
   animation: saved linear 500ms;
 }
 
